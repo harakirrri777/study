@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class LoginPage {
+
     /**
      * конструктор класса, занимающийся инициализацией полей класса
      */
@@ -51,7 +52,6 @@ public class LoginPage {
         int t = 10;
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(t));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Имя аккаунта']")));
-
         loginField.sendKeys(login);
     }
 
@@ -59,11 +59,10 @@ public class LoginPage {
      * метод для ввода пароля
      */
     public void inputPasswd(String passwd) {
-        int t = 10;
+       // int t = 10;
        // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(t));
        // wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@id, 'passp-field-passwd')]")));
         passwdField.sendKeys(passwd);
-
     }
 
     /**
