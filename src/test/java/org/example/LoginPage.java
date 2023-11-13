@@ -11,9 +11,9 @@ import java.time.Duration;
 
 public class LoginPage {
 
-    /**
-     * конструктор класса, занимающийся инициализацией полей класса
-     */
+
+    // конструктор класса, занимающийся инициализацией полей класса
+
     public WebDriver driver;
     public LoginPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -26,7 +26,7 @@ public class LoginPage {
     /**
      * определение локатора поля ввода логина
      */
-    @FindBy(xpath = "//*[@name='username']")
+    @FindBy(xpath = "//*[@class= 'input-0-2-71'] ")
     private WebElement loginField;
 
     /**
@@ -51,7 +51,7 @@ public class LoginPage {
     public void inputLogin(String login) {
         int t = 10;
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(t));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Имя аккаунта']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class= 'input-0-2-71']")));
         loginField.sendKeys(login);
     }
 
@@ -59,9 +59,9 @@ public class LoginPage {
      * метод для ввода пароля
      */
     public void inputPasswd(String passwd) {
-       // int t = 10;
-       // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(t));
-       // wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@id, 'passp-field-passwd')]")));
+        int t = 10;
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(t));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='password']")));
         passwdField.sendKeys(passwd);
     }
 

@@ -1,12 +1,14 @@
 package org.example;
-import junit.framework.TestCase;
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import java.util.concurrent.TimeUnit;
+
+import java.time.Duration;
+
 public class LoginTest {
 
     public static LoginPage loginPage;
@@ -32,31 +34,43 @@ public class LoginTest {
     }
 
     @Test
-    public void loginTest() {
+    public void loginTest() throws InterruptedException {
 
         loginPage.clickEntryBtn();
 
+        //Переключаемся на выплюнотое окошко
+        WebElement frame = driver.findElement(By.xpath("//*[@class= 'ag-popup__frame__layout__iframe']"));
+        driver.switchTo().frame(frame);
+
         loginPage.inputLogin(ConfProperties.getProperty("login"));
 
-        //нажимаем кнопку входа
         loginPage.clickLoginBtn();
 
-        //вводим пароль
         loginPage.inputPasswd(ConfProperties.getProperty("password"));
 
         loginPage.clickInBtn();
 
-        //получаем отображаемый логин
-        //String user = profilePage.getUserName();
-        //и сравниваем его с логином из файла настроек
-        //Assert.assertEquals(ConfProperties.getProperty("login"), user);
+        driver.switchTo().defaultContent();
+
+        Thread.sleep(Duration.ofSeconds(5));
+
+        //String count = profilePage.getCount();
+
+        profilePage.createMessage();
+
+        Thread.sleep(Duration.ofSeconds(5));
+
+        profilePage.inputAll();
+
+        profilePage.pressSend();
+
     }
 
     @AfterClass
     public static void tearDown() {
-        profilePage.entryMenu();
-        //profilePage.userLogout();
-        //driver.quit();
+
+        profilePage.userLogout();
+        driver.quit();
     }
 }
 
