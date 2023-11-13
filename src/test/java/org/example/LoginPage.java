@@ -23,21 +23,12 @@ public class LoginPage {
     @FindBy(xpath = "//button[contains(text(), 'Войти')]")
     private WebElement EntryBtn;
 
-    /**
-     * определение локатора поля ввода логина
-     */
     @FindBy(xpath = "//*[@class= 'input-0-2-71'] ")
     private WebElement loginField;
 
-    /**
-     * определение локатора кнопки входа в аккаунт
-     */
     @FindBy(xpath = "//*[contains(text(), 'Ввести пароль')]") //*[contains(text(), 'Войти')]/..
     private WebElement enterPasswordBtn;
 
-    /**
-     * определение локатора поля ввода пароля
-     */
     @FindBy(xpath = "//input[@name='password']") //input[@id='password'] //*[contains(@id, 'passp-field-passwd')]
     private WebElement passwdField;
 
@@ -45,9 +36,6 @@ public class LoginPage {
     @FindBy(xpath = "//button[@data-test-id = 'submit-button']") //*[contains(text(), 'Войти')]/..
     private WebElement InBtn;
 
-    /**
-     * метод для ввода логина
-     */
     public void inputLogin(String login) {
         int t = 10;
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(t));
